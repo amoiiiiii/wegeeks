@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -89,8 +90,60 @@ const Login = () => {
           <img className="object-cover w-full h-screen" src="https://static.vecteezy.com/system/resources/previews/001/991/652/non_2x/sign-in-page-flat-design-concept-illustration-icon-account-login-user-login-abstract-metaphor-can-use-for-landing-page-mobile-app-ui-posters-banners-free-vector.jpg" alt="Background" />
         </div>
       </div>
+=======
+
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/users/login', {
+        email,
+        password,
+      });
+
+      // Simpan token JWT di local storage atau sesi
+      localStorage.setItem('token', response.data.token);
+      setEmail('');
+      setPassword('');
+      setError(null);
+    } catch (error) {
+      setError('Email atau password salah');
+    }
+  };
+
+  return (
+    <div>
+      <h2>Form Login</h2>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleLogin}>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
     </div>
   );
 };
 
+<<<<<<< HEAD
 export default Login;
+=======
+export default LoginForm;
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3

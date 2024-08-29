@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import { format } from 'date-fns';
 import { FaUsers } from 'react-icons/fa'; // Pastikan Anda sudah menginstal react-icons
 
@@ -17,10 +18,27 @@ const AdminDashboard = () => {
     try {
       // Fetch total number of employees
       const userResponse = await axios.get('http://localhost:8080/api/auth/user', {
+=======
+import { Link } from 'react-router-dom';
+import './AdminDashboard.css';
+
+function AdminDashboard() {
+  const [employees, setEmployees] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0); // State untuk memicu efek samping
+
+  useEffect(() => {
+    fetchEmployees();
+  }, [refreshKey]); // Memanggil fetchEmployees setiap kali refreshKey berubah
+
+  const fetchEmployees = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/api/employees', {
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
+<<<<<<< HEAD
       const totalUsers = userResponse.data.adminUsers.length + userResponse.data.regularUsers.length + userResponse.data.superAdminUsers.length;
       setTotalEmployees(totalUsers);
   
@@ -50,10 +68,29 @@ const AdminDashboard = () => {
     } catch (error) {
       console.error('Error formatting date:', error);
       return 'Invalid Date';
+=======
+      setEmployees(response.data);
+    } catch (error) {
+      console.error('Error fetching employees:', error);
+    }
+  };
+
+  const deleteEmployee = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:5000/api/employees/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      setRefreshKey((prevKey) => prevKey + 1); // Memicu efek samping untuk refresh data
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
     }
   };
 
   return (
+<<<<<<< HEAD
     <div className="p-6">
       <h1 className="text-3xl font-semibold mb-6">Admin Dashboard</h1>
       
@@ -130,5 +167,40 @@ const AdminDashboard = () => {
     </div>
   );
 };
+=======
+    <div className="admin-dashboard-container">
+      <h1>Admin Dashboard</h1>
+      <div className="actions">
+        <Link to="/add">
+          <button>Add Employee</button>
+        </Link>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map((employee) => (
+            <tr key={employee.id}>
+              <td>{employee.name}</td>
+              <td>{employee.email}</td>
+              <td>
+                <Link to={`/update/${employee.id}`}>
+                  <button>Edit</button>
+                </Link>
+                <button onClick={() => deleteEmployee(employee.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
 
 export default AdminDashboard;

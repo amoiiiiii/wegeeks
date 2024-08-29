@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -7,10 +8,17 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@heroicons/react": "^2.1.5",
+=======
+  "name": "employee-absence-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
+<<<<<<< HEAD
     "chart.js": "^4.4.3",
     "daisyui": "^4.12.10",
     "date-fns": "^3.6.0",
@@ -27,6 +35,12 @@
     "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "socket.io-client": "^4.7.5",
+=======
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "react-scripts": "5.0.1",
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -35,6 +49,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+<<<<<<< HEAD
+=======
+  "proxy": "http://localhost:5000",
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -52,10 +70,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4"
+=======
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
   }
 }

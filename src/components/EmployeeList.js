@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './AdminDashboard.css';
@@ -118,10 +119,43 @@ function EmployeeList() {
     } catch (error) {
       toast.error('Error resetting password');
       console.error('Error resetting password:', error);
+=======
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+function EmployeeList() {
+  const [employees, setEmployees] = useState([]);
+
+  const fetchEmployees = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/api/employees', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      setEmployees(response.data);
+    } catch (error) {
+      console.error("There was an error fetching the employees!", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:5000/api/employees/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      fetchEmployees();
+    } catch (error) {
+      console.error("There was an error deleting the employee!", error);
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
     }
   };
 
   return (
+<<<<<<< HEAD
     <div className="admin-dashboard-container">
       <ToastContainer />
 
@@ -312,6 +346,33 @@ function EmployeeList() {
           </tbody>
         </table>
       </div>
+=======
+    <div>
+      <h2>Employee List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map((employee) => (
+            <tr key={employee.id}>
+              <td>{employee.id}</td>
+              <td>{employee.name}</td>
+              <td>{employee.position}</td>
+              <td>
+                <Link to={`/update/${employee.id}`}>Update</Link>
+                <button onClick={() => handleDelete(employee.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
     </div>
   );
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
@@ -24,5 +25,29 @@ const App = () => {
     </Router>
   );
 };
+=======
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AdminDashboard from './components/AdminDashboard';
+import AddEmployee from './components/AddEmployee';
+import UpdateEmployee from './components/UpdateEmployee';
+import Login from './components/Login';
+import Logout from './components/Logout';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<AdminDashboard />} />
+        <Route path="/add" element={<AddEmployee />} />
+        <Route path="/update/:id" element={<UpdateEmployee />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
+    </Router>
+  );
+}
+>>>>>>> 09b8d3331c9f19ab50ffd412ecc294172741d6d3
 
 export default App;
